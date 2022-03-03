@@ -14,7 +14,7 @@ def untargeted_reward(model,adv_vid,key,rectified_directions,cur_lr):
     # Get the logits and calculate the corresponding loss function
     _,_,logits0 = model(ref_adv_vid[None,:])
     _,_,logits1 = model(proposed_adv_vid[None,:])
-    loss0 = -torch.max(logits0, 1)[0]
+    loss0 = -torch.max(logits0, 1)[0]#torch.max(out,1)取每一行的最大值
     loss1 = -torch.max(logits1,1)[0]
     reward = torch.exp(-torch.abs(loss0-loss1))
     return reward
