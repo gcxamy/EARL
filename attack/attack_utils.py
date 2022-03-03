@@ -245,7 +245,7 @@ def targeted_video_attack(vid_model, vid, target_class, eps=0.05,max_lr=1e-2,min
         probs, Sidx, pre_action = agent_output(agent, features)
         beta = 1.0
         alpha = len_limit / 16.0
-        cost = beta * (probs.mean() - alpha) ** 2
+        cost = beta * (probs.mean() - alpha) ** 2#reward 扰动
         '''--------------------------attack--------------------------------'''
         top_val, top_idx, _ = vid_model(adv_vid[None,:])   # model prediction results
         num_iter += 1                                      # query number update
